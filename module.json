@@ -1,0 +1,17 @@
+{
+  "cjc_version": "0.27.1",
+  "organization": "cangjie",
+  "name": "bzip2",
+  "description": "bzip2 is a compression/decompression library",
+  "version": "1.0.0",
+  "requires": {},
+  "package_requires": {},
+  "foreign_requires": {
+  	"mybzip2": {
+	    "path": "./lib/",
+	    "export": []
+	}
+  },
+  "output_type": "dynamic",
+  "command_option": ""
+}
