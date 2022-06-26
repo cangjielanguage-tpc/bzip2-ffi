@@ -53,11 +53,10 @@ bzip2是一款文件压缩和解压缩工具。
 
 ### 接口说明
 
-主要是核心类和成员函数说明
+主要是核心类和成员函数说明,详情见 [API](./doc/api.md)
 
 #### class BZUtils
 
-##### func compress
 
 文件压缩
 
@@ -67,7 +66,6 @@ func compress(fileName: String)
 
 - fileName：需要压缩文件的名称
 
-##### func decompress
 
 文件解压缩
 
@@ -79,7 +77,7 @@ func decompress(fileName: String)
 
 #### class BZCommon
 
-##### func GlobalParamSet
+
 
 设置全局变量
 

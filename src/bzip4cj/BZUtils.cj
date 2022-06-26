@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2022-2022. All rights reserved.
+ * Copyright (c) Cangjie Library Team 2022-2022. All rights resvered.
  */
 
 /**
@@ -14,17 +14,16 @@ from std import collection.*
 from std import io.*
 
 /**
- * This class provides compression and decompression of bzip2
+ * The class is BZUtils
+ * @author zhoulq1024
  * @since 0.29.3
  */
-
 public open class BZUtils {
-     /**
+    /**
      * The Function is compress
      *
-     * @param fileName compressed file name
-     *
-     * @reture None
+     * @param fileName of String
+     * @since 0.29.3
      */
     public static func compress(fileName: String) {
         var a = GlobalParam()
@@ -33,14 +32,14 @@ public open class BZUtils {
         BZCommon.GlobalParamSet(a)
         CjCompress(fileName)
     }
+
+    /**
+     * The Function is decompress
+     *
+     * @param fileName of String
+     * @since 0.29.3
+     */
     public static func decompress(fileName: String) {
-        /**
-         * The Function is decompress
-         *
-         * @param fileName decompressed file name
-         *
-         * @return None
-         */
         var a = GlobalParam()
         a.setOpMode(2)
         a.setSrcMode(3)
@@ -49,18 +48,21 @@ public open class BZUtils {
     }
 }
 
+
 /**
- * This is a class that provides public functions.
+ * The class is BZCommon
+ * @author zhoulq1024
  * @since 0.29.3
  */
-
 public open class BZCommon {
+
     /**
      * The Function is GlobalParamSet
      *
-     * @param GlobalParam Setting the compression or decompression mode
+     * @param a of GlobalParam
      *
-     * @reture None
+     * @return Type of Unit
+     * @since 0.29.3
      */
     public static func GlobalParamSet(a: GlobalParam): Unit {
         CjGlobalParamSet(a)
