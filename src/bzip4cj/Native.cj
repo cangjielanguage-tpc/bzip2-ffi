@@ -16,7 +16,7 @@ from std import ffi.c.*
  * @since 0.29.3
  */
 @c
-public record GlobalParam {
+public struct GlobalParam {
     var opMode: Int32 = 0
     var srcMode: Int32 = 0
     var forceOverwrite: Bool = false
