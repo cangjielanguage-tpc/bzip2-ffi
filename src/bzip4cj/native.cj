@@ -11,7 +11,7 @@ from std import io.*
 from std import ffi.c.*
 
 /**
- * The record is GlobalParam
+ * The struct is GlobalParam
  * @author zhoulq1024
  * @since 0.29.3
  */
@@ -124,14 +124,14 @@ foreign func malloc(size: UIntNative): CPointer<Unit>
 foreign func free(p: CPointer<GlobalParam>): Unit
 
 /**
- * The Function is CjCompress
+ * The Function is cjCompress
  *
  * @param name of String
  *
  * @return Type of Unit
  * @since 0.29.3
  */
-public func CjCompress(name: String): Unit {
+public func cjCompress(name: String): Unit {
     unsafe {
         var aa = CString(name)
         compress(aa)
@@ -140,14 +140,14 @@ public func CjCompress(name: String): Unit {
 }
 
 /**
- * The Function is CjUncompress
+ * The Function is cjUncompress
  *
  * @param name of String
  *
  * @return Type of Unit
  * @since 0.29.3
  */
-public func CjUncompress(name: String): Unit {
+public func cjUncompress(name: String): Unit {
     unsafe {
         var aa = CString(name)
         uncompress(aa)
@@ -156,14 +156,14 @@ public func CjUncompress(name: String): Unit {
 }
 
 /**
- * The Function is CjGlobalParamSet
+ * The Function is cjGlobalParamSet
  *
  * @param a of GlobalParam
  *
  * @return Type of Unit
  * @since 0.29.3
  */
-public func CjGlobalParamSet(a: GlobalParam): Unit {
+public func cjGlobalParamSet(a: GlobalParam): Unit {
     unsafe {
         var ptr = malloc(120)
         var p = CPointer<GlobalParam>(ptr)

@@ -15,17 +15,22 @@ public static func decompress(fileName: String)
 public static func GlobalParamSet(a: GlobalParam)
 ```
 
-#### record GlobalParam
+#### struct GlobalParam
 
-```
+```cangjie
+//operation modes,value 1-3. 1:compress;2:uncompress;3:test
 public mut func setOpMode(opMode: Int32)
+//source modes; value 1-3. 1:I2O; 2:F2O; 3:F2F; F==file, I==stdin, O==stdout, 
 public mut func setSrcMode(srcMode: Int32)
+//输出文件与现有文件同名，预设不会覆盖现有文件。若要覆盖，请使用此参数。
 public mut func setForceOverwrite(forceOverwrite: Bool)
+//降低程序执行时内存的使用量。
 public mut func setSmallMode(smallMode: Bool)
-public mut func setNoisy(noisy: Bool)
-public mut func setWorkFactor(workFactor: Int32)
+//设置块大小，值：1-9
 public mut func setBlockSize100k(blockSize100k: Int32)
+//压缩或解压缩文件时，显示详细的信息。
 public mut func setVerbosity()
+//bzip2在压缩或解压缩后，会删除原始的文件。若要保留原始文件，请使用此参数。
 public mut func setKeepInputFiles(keepInputFiles: Bool)
 ```
 

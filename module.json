@@ -1,5 +1,5 @@
 {
-  "cjc_version": "0.30.4",
+  "cjc_version": "0.31.4",
   "organization": "cangjie",
   "name": "bzip2",
   "description": "bzip2 is a compression/decompression library",

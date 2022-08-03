@@ -5,7 +5,7 @@
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.30.4-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.31.4-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-100%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -13,7 +13,7 @@
 
 ## <img alt="" src="./doc/assets/readme-icon-introduction.png" style="display: inline-block;" width=3%/>介绍
 
-bzip2是一款文件压缩和解压缩工具。
+bzip2是一款文件压缩和解压缩工具。[参考链接](https://github.com/LuaDist/bzip2)
 
 ### 特性
 
@@ -38,8 +38,8 @@ bzip2是一款文件压缩和解压缩工具。
 ├── README.md
 ├── src
 │   └── bzip4cj
-│       └── BZUtils.cj
-│       └── Native.cj
+│       └── bzutils.cj
+│       └── native.cj
 └── test
     ├── HLT
     ├── LLT
