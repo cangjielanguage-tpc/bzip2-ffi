@@ -6,7 +6,9 @@ from bzip2 import bzip4cj.*
 from std import os.posix.*
 
 main() {
+    var a = GlobalParam()
     var path2: String = getcwd()
-    BZUtils.decompress("${path2}/a.txt.bz2")
+    BZCommon.GlobalParamSet(a)
+    BZUtils.compress("${path2}/a.txt")
     return 0
 }

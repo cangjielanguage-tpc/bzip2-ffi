@@ -26,7 +26,11 @@ public mut func setSrcMode(srcMode: Int32)
 public mut func setForceOverwrite(forceOverwrite: Bool)
 //降低程序执行时内存的使用量。
 public mut func setSmallMode(smallMode: Bool)
-//设置块大小，值：1-9
+//压制不重要的警告信息。属于 I/O 错误及其它严重事件的信息将不会被压制，默认true。
+public mut func setNoisy(noisy: Bool)
+//用于决定何时使用回退排序算法，默认值为30
+public mut func setWorkFactor(workFactor: Int32)
+//设置块大小，值：1-9，1：fast 9:best
 public mut func setBlockSize100k(blockSize100k: Int32)
 //压缩或解压缩文件时，显示详细的信息。
 public mut func setVerbosity()

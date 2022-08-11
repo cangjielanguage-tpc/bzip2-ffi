@@ -9,6 +9,7 @@ main() {
     var a = GlobalParam()
     a.setNoisy(false)
     var path2: String = getcwd()
+    BZCommon.GlobalParamSet(a)
     BZUtils.compress("${path2}/a.txt")
     return 0
 }

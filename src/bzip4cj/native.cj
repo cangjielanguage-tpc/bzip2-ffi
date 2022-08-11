@@ -17,12 +17,12 @@ from std import ffi.c.*
  */
 @c
 public struct GlobalParam {
-    var opMode: Int32 = 0
-    var srcMode: Int32 = 0
+    var opMode: Int32 = 1
+    var srcMode: Int32 = 3
     var forceOverwrite: Bool = false
     var smallMode: Bool = false
     var noisy: Bool = true
-    var workFactor: Int32 = 0
+    var workFactor: Int32 = 30
     var blockSize100k: Int32 = 9
     var verbosity: Int32 = 0
     var keepInputFiles: Bool = false

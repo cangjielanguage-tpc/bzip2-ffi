@@ -12,6 +12,7 @@ main() {
     a.setVerbosity()
     a.setWorkFactor(9)
     var path2: String = getcwd()
+    BZCommon.GlobalParamSet(a)
     BZUtils.compress("${path2}/a.txt")
     return 0
 }
