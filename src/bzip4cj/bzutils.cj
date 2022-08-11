@@ -55,7 +55,7 @@ public open class BZCommon {
      * @return Type of Unit
      * @since 0.29.3
      */
-    public static func globalParamSet(a: GlobalParam): Unit {
-        cjGlobalParamSet(a)
+    public static func globalParamSet(args: GlobalParam): Unit {
+        cjGlobalParamSet(args)
     }
 }

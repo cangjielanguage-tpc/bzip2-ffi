@@ -82,7 +82,7 @@ func decompress(fileName: String)
 设置全局变量
 
 ```cangjie
-func GlobalParamSet(a: GlobalParam): Unit
+func GlobalParamSet(args: GlobalParam): Unit
 ```
 
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
@@ -115,13 +115,19 @@ cpm build
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
+from std import io.*
 
 main() {
-	var a = GlobalParam()
+    var args = GlobalParam()
     var path2: String = getcwd()
-    BZCommon.GlobalParamSet(a)
+    BZCommon.globalParamSet(args)
     BZUtils.compress("${path2}/a.txt")
-    return 0
+    var rFs: FileStream = FileStream("${path2}/a.txt.bz2", OpenMode.Open)
+    if (rFs.openFile()) {
+        return 0
+    } else {
+        return 1
+    }
 }
 ```
 

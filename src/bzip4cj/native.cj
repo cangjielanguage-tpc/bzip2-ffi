@@ -118,8 +118,8 @@ public struct GlobalParam {
 }
 
 foreign func GlobalParamSet(m: CPointer<GlobalParam>): Unit
-foreign func compress(a: CString): Unit
-foreign func uncompress(a: CString): Unit
+foreign func compress(str: CString): Unit
+foreign func uncompress(str: CString): Unit
 foreign func malloc(size: UIntNative): CPointer<Unit>
 foreign func free(p: CPointer<GlobalParam>): Unit
 
@@ -133,9 +133,9 @@ foreign func free(p: CPointer<GlobalParam>): Unit
  */
 public func cjCompress(name: String): Unit {
     unsafe {
-        var aa = CString(name)
-        compress(aa)
-        aa.free()
+        var str = CString(name)
+        compress(str)
+        str.free()
     }
 }
 
@@ -149,9 +149,9 @@ public func cjCompress(name: String): Unit {
  */
 public func cjUncompress(name: String): Unit {
     unsafe {
-        var aa = CString(name)
-        uncompress(aa)
-        aa.free()
+        var str = CString(name)
+        uncompress(str)
+        str.free()
     }
 }
 
@@ -163,11 +163,11 @@ public func cjUncompress(name: String): Unit {
  * @return Type of Unit
  * @since 0.29.3
  */
-public func cjGlobalParamSet(a: GlobalParam): Unit {
+public func cjGlobalParamSet(args: GlobalParam): Unit {
     unsafe {
         var ptr = malloc(120)
         var p = CPointer<GlobalParam>(ptr)
-        p.write(a)
+        p.write(args)
         GlobalParamSet(p)
         free(p)
     }

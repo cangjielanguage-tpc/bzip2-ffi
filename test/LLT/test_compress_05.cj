@@ -4,13 +4,19 @@
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
+from std import io.*
 
 main() {
-    var a = GlobalParam()
-    a.setForceOverwrite(true)
+    var args = GlobalParam()
+    args.setForceOverwrite(true)
     var path2: String = getcwd()
-    BZCommon.GlobalParamSet(a)
-    BZUtils.compress("${path2}/a.txt")
-    return 0
+    BZCommon.globalParamSet(args)
+    BZUtils.compress("${path2}/a.txt")    //覆盖目标文件
+    var rFs: FileStream = FileStream("${path2}/a.txt.bz2", OpenMode.Open)
+    if (rFs.openFile()) {
+        return 0
+    } else {
+        return 1
+    }
 }
 
