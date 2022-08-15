@@ -5,7 +5,7 @@
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.30.4-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.31.4-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-100%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -13,7 +13,7 @@
 
 ## <img alt="" src="./doc/assets/readme-icon-introduction.png" style="display: inline-block;" width=3%/>介绍
 
-bzip2是一款文件压缩和解压缩工具。
+bzip2是一款文件压缩和解压缩工具。[参考链接](https://github.com/LuaDist/bzip2)
 
 ### 特性
 
@@ -38,8 +38,8 @@ bzip2是一款文件压缩和解压缩工具。
 ├── README.md
 ├── src
 │   └── bzip4cj
-│       └── BZUtils.cj
-│       └── Native.cj
+│       └── bzutils.cj
+│       └── native.cj
 └── test
     ├── HLT
     ├── LLT
@@ -82,7 +82,7 @@ func decompress(fileName: String)
 设置全局变量
 
 ```cangjie
-func GlobalParamSet(a: GlobalParam): Unit
+func GlobalParamSet(args: GlobalParam): Unit
 ```
 
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
@@ -115,11 +115,19 @@ cpm build
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
+from std import io.*
 
 main() {
+    var args = GlobalParam()
     var path2: String = getcwd()
+    BZCommon.globalParamSet(args)
     BZUtils.compress("${path2}/a.txt")
-    return 0
+    var rFs: FileStream = FileStream("${path2}/a.txt.bz2", OpenMode.Open)
+    if (rFs.openFile()) {
+        return 0
+    } else {
+        return 1
+    }
 }
 ```
 

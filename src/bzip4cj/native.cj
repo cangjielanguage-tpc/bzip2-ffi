@@ -11,18 +11,18 @@ from std import io.*
 from std import ffi.c.*
 
 /**
- * The record is GlobalParam
+ * The struct is GlobalParam
  * @author zhoulq1024
  * @since 0.29.3
  */
 @c
 public struct GlobalParam {
-    var opMode: Int32 = 0
-    var srcMode: Int32 = 0
+    var opMode: Int32 = 1
+    var srcMode: Int32 = 3
     var forceOverwrite: Bool = false
     var smallMode: Bool = false
     var noisy: Bool = true
-    var workFactor: Int32 = 0
+    var workFactor: Int32 = 30
     var blockSize100k: Int32 = 9
     var verbosity: Int32 = 0
     var keepInputFiles: Bool = false
@@ -118,56 +118,56 @@ public struct GlobalParam {
 }
 
 foreign func GlobalParamSet(m: CPointer<GlobalParam>): Unit
-foreign func compress(a: CString): Unit
-foreign func uncompress(a: CString): Unit
+foreign func compress(str: CString): Unit
+foreign func uncompress(str: CString): Unit
 foreign func malloc(size: UIntNative): CPointer<Unit>
 foreign func free(p: CPointer<GlobalParam>): Unit
 
 /**
- * The Function is CjCompress
+ * The Function is cjCompress
  *
  * @param name of String
  *
  * @return Type of Unit
  * @since 0.29.3
  */
-public func CjCompress(name: String): Unit {
+public func cjCompress(name: String): Unit {
     unsafe {
-        var aa = CString(name)
-        compress(aa)
-        aa.free()
+        var str = CString(name)
+        compress(str)
+        str.free()
     }
 }
 
 /**
- * The Function is CjUncompress
+ * The Function is cjUncompress
  *
  * @param name of String
  *
  * @return Type of Unit
  * @since 0.29.3
  */
-public func CjUncompress(name: String): Unit {
+public func cjUncompress(name: String): Unit {
     unsafe {
-        var aa = CString(name)
-        uncompress(aa)
-        aa.free()
+        var str = CString(name)
+        uncompress(str)
+        str.free()
     }
 }
 
 /**
- * The Function is CjGlobalParamSet
+ * The Function is cjGlobalParamSet
  *
  * @param a of GlobalParam
  *
  * @return Type of Unit
  * @since 0.29.3
  */
-public func CjGlobalParamSet(a: GlobalParam): Unit {
+public func cjGlobalParamSet(args: GlobalParam): Unit {
     unsafe {
         var ptr = malloc(120)
         var p = CPointer<GlobalParam>(ptr)
-        p.write(a)
+        p.write(args)
         GlobalParamSet(p)
         free(p)
     }

@@ -4,14 +4,19 @@
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
+from std import io.*
 
 main() {
-    var a = GlobalParam()
-    var b = BZUtils()
-    var c =BZCommon ()
-    a.setVerbosity()
-    a.setWorkFactor(9)
+    var args = GlobalParam()
+    args.setVerbosity()
+    args.setWorkFactor(1)
     var path2: String = getcwd()
+    BZCommon.globalParamSet(args)
     BZUtils.compress("${path2}/a.txt")
-    return 0
+    var rFs: FileStream = FileStream("${path2}/a.txt.bz2", OpenMode.Open)
+    if (rFs.openFile()) {
+        return 0
+    } else {
+        return 1
+    }
 }

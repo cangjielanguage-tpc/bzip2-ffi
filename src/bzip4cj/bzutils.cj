@@ -26,11 +26,7 @@ public open class BZUtils {
      * @since 0.29.3
      */
     public static func compress(fileName: String) {
-        var a = GlobalParam()
-        a.setOpMode(1)
-        a.setSrcMode(3)
-        BZCommon.GlobalParamSet(a)
-        CjCompress(fileName)
+        cjCompress(fileName)
     }
 
     /**
@@ -40,14 +36,9 @@ public open class BZUtils {
      * @since 0.29.3
      */
     public static func decompress(fileName: String) {
-        var a = GlobalParam()
-        a.setOpMode(2)
-        a.setSrcMode(3)
-        BZCommon.GlobalParamSet(a)
-        CjUncompress(fileName)
+        cjUncompress(fileName)
     }
 }
-
 
 /**
  * The class is BZCommon
@@ -64,7 +55,7 @@ public open class BZCommon {
      * @return Type of Unit
      * @since 0.29.3
      */
-    public static func GlobalParamSet(a: GlobalParam): Unit {
-        CjGlobalParamSet(a)
+    public static func globalParamSet(args: GlobalParam): Unit {
+        cjGlobalParamSet(args)
     }
 }
