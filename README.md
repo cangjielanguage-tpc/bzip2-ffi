@@ -61,7 +61,7 @@ bzip2是一款文件压缩和解压缩工具。[参考链接](https://github.com
 文件压缩
 
 ```cangjie
-func compress(fileName: String)
+func compress(fileName: String): Int32
 ```
 
 - fileName：需要压缩文件的名称
@@ -70,19 +70,25 @@ func compress(fileName: String)
 文件解压缩
 
 ```cangjie
-func decompress(fileName: String)
+func decompress(fileName: String): Int32
 ```
 
 - fileName：需要解压缩文件的名称
 
 #### class BZCommon
 
-
-
 设置全局变量
 
+- opMode：设置压缩模式，1：压缩，2：解压缩‘
+- srcMode：源文件模式，目前只支持文件到文件模式，默认值为3；
+- forceOverwrite：强制覆盖输出文件；
+- keepInputFiles：保留输入文件；
+- smallMode：在压缩或解压缩过程中降低内存用量；
+- verbosity：详尽模式 -- 显示每个被处理文件的压缩率；
+- blockSize100k：压缩时将块长度设置为100k，200k...900k，对应值为1-9。
+
 ```cangjie
-func GlobalParamSet(args: GlobalParam): Unit
+func GlobalParamSet(args: GlobalParam): Int32
 ```
 
 ## <img alt="" src="./doc/assets/readme-icon-compile.png" style="display: inline-block;" width=3%/>编译执行
@@ -120,8 +126,14 @@ from std import io.*
 main() {
     var args = GlobalParam()
     var path2: String = getcwd()
-    BZCommon.globalParamSet(args)
-    BZUtils.compress("${path2}/a.txt")
+    var ret: Int32 = BZCommon.globalParamSet(args)
+    if (ret != 0) {
+        return 1
+    }
+    ret = BZUtils.compress("${path2}/a.txt")
+    if (ret != 0) {
+        return 1
+    }
     var rFs: FileStream = FileStream("${path2}/a.txt.bz2", OpenMode.Open)
     if (rFs.openFile()) {
         return 0

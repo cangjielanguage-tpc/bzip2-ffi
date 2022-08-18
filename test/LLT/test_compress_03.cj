@@ -10,8 +10,14 @@ main() {
     var args = GlobalParam()
     args.setSmallMode(true)
     var path2: String = getcwd()
-    BZCommon.globalParamSet(args)
-    BZUtils.compress("${path2}/a.txt")   //运行时内存使用减少
+    var ret: Int32 = BZCommon.globalParamSet(args)
+    if (ret != 0) {
+        return 1
+    }
+    ret = BZUtils.compress("${path2}/a.txt")   //运行时内存使用减少
+    if (ret != 0) {
+        return 1
+    }
     var rFs: FileStream = FileStream("${path2}/a.txt.bz2", OpenMode.Open)
     if (rFs.openFile()) {
         return 0

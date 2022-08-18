@@ -25,8 +25,9 @@ public open class BZUtils {
      * @param fileName of String
      * @since 0.29.3
      */
-    public static func compress(fileName: String) {
-        cjCompress(fileName)
+    public static func compress(fileName: String): Int32 {
+        var ret: Int32 = cjCompress(fileName)
+        ret
     }
 
     /**
@@ -35,8 +36,9 @@ public open class BZUtils {
      * @param fileName of String
      * @since 0.29.3
      */
-    public static func decompress(fileName: String) {
-        cjUncompress(fileName)
+    public static func decompress(fileName: String): Int32 {
+        var ret: Int32 = cjUncompress(fileName)
+        ret
     }
 }
 
@@ -55,7 +57,8 @@ public open class BZCommon {
      * @return Type of Unit
      * @since 0.29.3
      */
-    public static func globalParamSet(args: GlobalParam): Unit {
-        cjGlobalParamSet(args)
+    public static func globalParamSet(args: GlobalParam): Int32 {
+        var ret: Int32 = cjGlobalParamSet(args)
+        ret
     }
 }

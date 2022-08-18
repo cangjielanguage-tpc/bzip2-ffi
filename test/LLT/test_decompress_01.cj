@@ -10,8 +10,14 @@ main() {
     var args = GlobalParam()
     args.setOpMode(2)
     var path2: String = getcwd()
-    BZCommon.globalParamSet(args)
-    BZUtils.decompress("${path2}/a.txt.bz2")  //解压缩后当前目录生成a.txt文件
+    var ret: Int32 = BZCommon.globalParamSet(args)
+    if (ret != 0) {
+        return 1
+    }
+    ret = BZUtils.decompress("${path2}/a.txt.bz2")  //解压缩后当前目录生成a.txt文件
+    if (ret != 0) {
+        return 1
+    }
     var rFs: FileStream = FileStream("${path2}/a.txt", OpenMode.Open)
     if (rFs.openFile()) {
         return 0
