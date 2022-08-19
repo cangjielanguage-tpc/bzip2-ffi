@@ -1,4 +1,4 @@
-// DEPENDENCE: a.txt.bz2
+// DEPENDENCE: a.txt
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
@@ -9,8 +9,14 @@ from std import io.*
 main() {
     var args = GlobalParam()
     var path2: String = getcwd()
-    BZCommon.globalParamSet(args)
-    BZUtils.compress("${path2}/a.txt")   //当前目录下生成a.txt.bz2压缩文件
+    var ret: Int32 = BZCommon.globalParamSet(args)
+    if (ret != 0) {
+        return 1
+    }
+    ret = BZUtils.compress("${path2}/a.txt")   //当前目录下生成a.txt.bz2压缩文件
+    if (ret != 0) {
+        return 1
+    }
     var rFs: FileStream = FileStream("${path2}/a.txt.bz2", OpenMode.Open)
     if (rFs.openFile()) {
         return 0
