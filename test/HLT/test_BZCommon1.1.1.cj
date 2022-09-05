@@ -1,0 +1,22 @@
+// DEPENDENCE: test_BZCommon.md
+// EXEC: cjc %import-path %L %l %f
+// EXEC: ./main
+
+from bzip2 import bzip4cj.*
+from std import os.posix.*
+from std import io.*
+
+main() {
+    var path: String = getcwd()
+    var fileName: String = "${path}/test_BZCommon.md"
+    var params = GlobalParam()
+    params.setOpMode(1)
+    BZCommon.globalParamSet(params)
+    BZUtils.compress(fileName)
+
+    if(!File.exist("${path}/test_BZCommon.md.bz2")) {
+        return -1
+    }
+    return 0
+    
+}
