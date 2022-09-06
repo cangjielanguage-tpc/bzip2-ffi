@@ -5,7 +5,7 @@
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.31.4-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.32.5-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-100%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -134,8 +134,8 @@ main() {
     if (ret != 0) {
         return 1
     }
-    var rFs: FileStream = FileStream("${path2}/a.txt.bz2", OpenMode.Open)
-    if (rFs.openFile()) {
+    var rFs: File = File("${path2}/a.txt.bz2", Read, Open)
+    if (rFs.canRead()) {
         return 0
     } else {
         return 1

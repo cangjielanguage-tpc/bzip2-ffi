@@ -18,8 +18,8 @@ main() {
     if (ret != 0) {
         return 1
     }
-    var rFs: FileStream = FileStream("${path2}/a.txt", OpenMode.Open)
-    if (rFs.openFile()) {
+    var rFs: File = File("${path2}/a.txt", Read, Open)
+    if (rFs.canRead()) {
         return 0
     } else {
         return 1
