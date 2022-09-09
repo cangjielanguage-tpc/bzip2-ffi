@@ -1,0 +1,11 @@
+[
+	{
+		"Name": " bzip2 "
+		"License": " NA "
+		"License": " LICENSE "
+		"Version Number": " 1.0.5 "
+		"Owner": " Julian R Seward "
+		"Upstream URL": " https://github.com/LuaDist/bzip2/tree/1.0.5 "
+		"Description": " Bzip2 is a file compression and decompression library. "
+	}
+]
