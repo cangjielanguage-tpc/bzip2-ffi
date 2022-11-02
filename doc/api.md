@@ -77,7 +77,7 @@ struct GlobalParam {
 ```cangjie
 from bzip2 import bzip4cj.*
 from std import os.posix.*
-from std import io.*
+from std import fs.*
 
 main() {
     var args = GlobalParam()

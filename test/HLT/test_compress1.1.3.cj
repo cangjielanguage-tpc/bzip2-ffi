@@ -4,7 +4,7 @@
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
-from std import io.*
+from std import fs.*
 
 main() {
     var path: String = getcwd()
@@ -15,7 +15,7 @@ main() {
     
     BZUtils.decompress("${path}/test1.md.bz2")
 
-    if(File.exist("${path}/test1.md")) {
+    if(File.exists("${path}/test1.md")) {
         return -1
     }
     return 0
