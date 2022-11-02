@@ -4,7 +4,7 @@
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
-from std import io.*
+from std import fs.*
 
 main() {
     var path: String = getcwd()
@@ -14,7 +14,7 @@ main() {
     BZCommon.globalParamSet(params)
     BZUtils.compress(fileName)
 
-    if(!File.exist("${path}/test_BZCommon.md.bz2")) {
+    if(!File.exists("${path}/test_BZCommon.md.bz2")) {
         return -1
     }
     return 0

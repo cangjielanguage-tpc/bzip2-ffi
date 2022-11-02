@@ -5,14 +5,14 @@
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
-from std import io.*
+from std import fs.*
 
 main() {
     var path: String = getcwd()
     compress_one()
     compress_two()
 
-    if(!File.exist("${path}/test.txt.bz2") || !File.exist("${path}/test1.txt.bz2")) {
+    if(!File.exists("${path}/test.txt.bz2") || !File.exists("${path}/test1.txt.bz2")) {
         return -1
     }
     

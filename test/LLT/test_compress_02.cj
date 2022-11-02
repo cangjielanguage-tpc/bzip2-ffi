@@ -4,7 +4,7 @@
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
-from std import io.*
+from std import fs.*
 
 main() {
     var args = GlobalParam()
@@ -18,8 +18,8 @@ main() {
     if (ret != 0) {
         return 1
     }
-    var rFs1: File = File("${path2}/a.txt.bz2", Read, Open)
-    var rFs2: File = File("${path2}/a.txt", Read, Open)
+    var rFs1: File = File("${path2}/a.txt.bz2", Open(true, true))
+    var rFs2: File = File("${path2}/a.txt", Open(true, true))
     if (rFs1.canRead()) {
         return 0
     } else {

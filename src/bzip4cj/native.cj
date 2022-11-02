@@ -7,7 +7,7 @@
  * The file declars the GlobalParam class.
  */
 package bzip4cj
-from std import io.*
+from std import fs.*
 from std import ffi.c.*
 
 /**

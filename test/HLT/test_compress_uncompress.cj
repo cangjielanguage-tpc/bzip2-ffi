@@ -4,28 +4,28 @@
 
 from bzip2 import bzip4cj.*
 from std import os.posix.*
-from std import io.*
+from std import fs.*
 
 main() {
     var path: String = getcwd()
-    var fs: FileStream = FileStream("${path}/test_compress_uncompress.md")
-    var data: String = ""
-    if (fs.openFile()) {      
-        data = fs.readAllText()
+    var fs: File = File("${path}/test_compress_uncompress.md", Open(true, true))
+    var data: Array<UInt8> = []
+    if (fs.canRead()) {      
+        data = fs.readToEnd()
         //println(data)
         fs.close()
     }
 
     compressOne()
     decompressOne()
-    var fs1: FileStream = FileStream("${path}/test_compress_uncompress.md")
-    var data1: String = ""
+    var fs1: File = File("${path}/test_compress_uncompress.md", Open(true, true))
+    var data1: Array<UInt8> = []
    
-    if (fs1.openFile()) {      
-        data1 = fs1.readAllText() 
+    if (fs1.canRead()) {      
+        data1 = fs1.readToEnd()
         fs1.close()
     }
-    if(!data1.equals(data)) {
+    if(data1 != data) {
         return -1
     }
 
