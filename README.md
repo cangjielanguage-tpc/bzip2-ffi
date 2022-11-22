@@ -13,7 +13,7 @@
 
 ## <img alt="" src="./doc/assets/readme-icon-introduction.png" style="display: inline-block;" width=3%/>介绍
 
-bzip2是一款文件压缩和解压缩工具。[参考链接](https://github.com/LuaDist/bzip2)
+bzip2是一款文件压缩和解压缩工具。[参考链接](https://gitee.com/openharmony/third_party_bzip2)
 
 ### 特性
 
