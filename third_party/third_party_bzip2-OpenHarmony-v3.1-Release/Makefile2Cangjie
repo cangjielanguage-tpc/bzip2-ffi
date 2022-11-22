@@ -1,0 +1,46 @@
+CC=gcc
+CFLAGS=-Wall -Winline -O2 -g $(BIGFILES)
+
+OBJS= blocksort.o  \
+      huffman.o    \
+      crctable.o   \
+      randtable.o  \
+      compress.o   \
+      decompress.o \
+      bzlib.o \
+      bzip2.o
+
+all:$(OBJS)
+	@echo "$(OBJS)"
+	gcc -shared -fPIC -o libmybzip2.so $(OBJS)
+
+blocksort.o: blocksort.c
+	        @cat words0
+		        $(CC) $(CFLAGS) -fPIC -c blocksort.c
+huffman.o: huffman.c
+	        $(CC) $(CFLAGS) -fPIC -c huffman.c
+crctable.o: crctable.c
+	        $(CC) $(CFLAGS) -fPIC -c crctable.c
+randtable.o: randtable.c
+	        $(CC) $(CFLAGS) -fPIC -c randtable.c
+compress.o: compress.c
+	        $(CC) $(CFLAGS) -fPIC -c compress.c
+decompress.o: decompress.c
+	        $(CC) $(CFLAGS) -fPIC -c decompress.c
+bzlib.o: bzlib.c
+	        $(CC) $(CFLAGS) -fPIC -c bzlib.c
+bzip2.o: bzip2.c
+	        $(CC) $(CFLAGS) -fPIC -c bzip2.c
+bzip2recover.o: bzip2recover.c
+	        $(CC) $(CFLAGS) -fPIC -c bzip2recover.c
+
+
+# install:
+# 	mkdir -p /usr/local/include/mybzip2
+# 	install -m 644 ./*h /usr/local/include/mybzip2
+# 	install -m 644 libmybzip2.so /usr/local/lib
+# 	/usr/sbin/ldconfig -v | grep libmybzip2
+
+clean:
+	rm -f *.o
+

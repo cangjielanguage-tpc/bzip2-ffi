@@ -7,7 +7,7 @@
   "requires": {},
   "package_requires": {},
   "foreign_requires": {
-  	"mybzip2": {
+  	"libbz2": {
 	    "path": "./lib/",
 	    "export": []
 	}
