@@ -8,7 +8,6 @@
  */
 package bzip4cj
 from std import fs.*
-from std import ffi.c.*
 
 /**
  * The struct is GlobalParam
