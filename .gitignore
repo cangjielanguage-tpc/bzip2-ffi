@@ -1,0 +1,12 @@
+.git/
+.gitee/
+.vscode/
+*.cjo
+build/
+module-resolve.json
+ci_test/
+ci_lib/
+bin/
+*.gcda
+*.gcno
+output/
