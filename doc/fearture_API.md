@@ -6,30 +6,35 @@
 
 ### 1 提供bzip2格式数据压缩和解压缩功能
 
-前置条件：NA 
+前置条件：NA
 
 场景：
+
 1. OHOS， Linux， windows支持bzip2压缩、解压缩、压缩设置功能。
 2. 约束：
 3. 性能：支持版本几何性能持平
 4. 可靠性：NA
 
-#### 1.1 提供bzip2压缩功能 
+#### 1.1 提供bzip2压缩功能
 
 ##### 1.1.1 主要接口
 
 ```
-/**
+/*
 * 文件压缩
 * @param fileName 压缩的文件路径
+* @return 0成功 其他异常
 */
 func compress(fileName: String): Int32
 
 ```
 
-#### 1.1.2 示例
+##### 1.1.2 示例
 
 ```cangjie
+// DEPENDENCE: a.txt
+// EXEC: cjc %import-path %L %l %f
+// EXEC: ./main
 from bzip2 import bzip4cj.*
 from std import os.posix.*
 from std import fs.*
@@ -46,40 +51,57 @@ main() {
         return 1
     }
     var rFs: File = File("${path2}/a.txt.bz2", Read, Open)
-    if (rFs.canRead()) {
-        return 0
-    } else {
+    if (!rFs.canRead()) {
         return 1
     }
+    0
 }
 ```
- 执行后查看是否生成压缩文件： ：
+
+执行示例：
 
 ```shell
-cd /bzip2/ci_test/test_temp/run/test_compress_01_cj_1655346048_1717525
-```
+# 将上述代码保存为: test/LLT/test_compress_01.cj
 
- 验证解压后是否与压缩文件`a.txt`内容一致 
+# 新建一个待压缩文件: 
+echo 'helloworld' > test/LLT/a.txt
 
-```
+# 使用ci_test编译
+python3 ci_test/main.py build
+
+# 使用ci_test执行所有用例
+python3 ci_test/main.py test
+
+# test_compress_01.cj已被编译并执行main方法
+# 进入执行用例的临时目录
+cd ci_test/test_temp/run/test_compress_01_cj*
+
+# 解压生成的a.txt.bz2
 bzip2 -d a.txt.bz2
+
+# 验证解压后的内容
+cat a.txt
 ```
 
-#### 1.2 提供bzip2解压缩功能
+#### 1.2 提供bzip2解压功能
 
-#####  1.2.1 主要接口
-
+##### 1.2.1 主要接口
 
 ```cangjie
-/**
+/*
 * 文件解压缩
 * @param fileName 解压缩的文件路径
+* @return 0成功 其他异常
 */
 func decompress(fileName: String): Int32
 ```
-#####  1.2.2 示例
+
+##### 1.2.2 示例
 
 ```cangjie
+// DEPENDENCE: a.txt
+// EXEC: cjc %import-path %L %l %f
+// EXEC: ./main
 from bzip2 import bzip4cj.*
 from std import os.posix.*
 from std import fs.*
@@ -102,47 +124,101 @@ main() {
 }
 ```
 
+执行示例: 参照1.1.2的执行过程
 
-#### 1.3 提供压缩参数设置功能 
+#### 1.3 提供压缩参数设置功能
 
-#####  1.3.1 主要接口
+##### 1.3.1 主要接口
 
 ```
-/**
-* The Function is GlobalParamSet
-*
-* @param a of GlobalParam
-*
-* @return Type of Unit
-*/
-func GlobalParamSet(args: GlobalParam): Int32
+/*
+ * 设置参数的工具类
+ */
+public open class BZCommon {
+    /*
+     * 设置参数
+     * @param GlobalParam参数
+     * @return 0成功 其他异常
+     */
+    public static func globalParamSet(args: GlobalParam): Int32
+}
 
+/*
+ * 参数信息
+ */
+public struct GlobalParam {
 
-/**
-* opMode：设置压缩模式，1：压缩，2：解压缩
-* srcMode：源文件模式，目前只支持文件到文件模式，默认值为3；
-* forceOverwrite：强制覆盖输出文件；true：覆盖 false：不覆盖
-* keepInputFiles：保留输入文件； true:保留 false:不保留
-* smallMode：在压缩或解压缩过程中降低内存用量； true:小 false
-* verbosity：详尽模式 -- 显示每个被处理文件的压缩率；
-* blockSize100k：压缩时将块长度设置为100k，200k...900k，对应值为1-9。
-*/
-GlobalParamSet类参数
+    /*
+     * 设置压缩模式
+     * @param opMode 1：压缩，2：解压缩
+     */
+    public mut func setOpMode(opMode: Int32): Unit
+
+    /*
+     * 源文件模式，目前只支持文件到文件模式，默认值为3
+     * @param srcMode Int32
+     */
+    public mut func setSrcMode(srcMode: Int32): Unit
+
+    /*
+     * 强制覆盖输出文件
+     * @param forceOverwrite true: 覆盖 false: 不覆盖
+     */
+    public mut func setForceOverwrite(forceOverwrite: Bool): Unit
+
+    /*
+     * 在压缩或解压缩过程中降低内存用量
+     * @param smallMode true:小 false
+     */
+    public mut func setSmallMode(smallMode: Bool): Unit
+
+    /*
+     * 是否打印非关键错误消息
+     * @param Noisy true显示 false忽略
+     */
+    public mut func setNoisy(noisy: Bool): Unit
+
+    /*
+     * 设置WorkFactor参数
+     * @param WorkFactor Int32
+     */
+    public mut func setWorkFactor(workFactor: Int32): Unit
+
+    /*
+     * 压缩时将块长度设置为100k,200k...900k. 对应值为1-9
+     * @param blockSize100k Int32
+     */
+    public mut func setBlockSize100k(blockSize100k: Int32): Unit
+
+    /*
+     * 详尽模式 显示每个被处理文件的压缩率
+     */
+    public mut func setVerbosity(): Unit
+
+    /*
+     * 保留输入文件
+     * @param keepInputFiles true:保留 false:不保留
+     */
+    public mut func setKeepInputFiles(keepInputFiles: Bool): Unit
+}
 ```
 
 ##### 1.2.2 示例
 
 ```
+// DEPENDENCE: a.txt
+// EXEC: cjc %import-path %L %l %f
+// EXEC: ./main
 from bzip2 import bzip4cj.*
 from std import os.posix.*
 from std import fs.*
 
 main() {
-	var path: String = getcwd()
+ var path: String = getcwd()
     var fileName: String = "${path}/test.txt"
     var params = GlobalParam()
     var params = GlobalParam()
-    params.setOpMode(1) 1：压缩，2：解压缩
+    params.setOpMode(1) 1: 压缩，2: 解压缩
     params.setSrcMode(3) //目前只支持 3
     params.setSmallMode(true) 
     params.setForceOverwrite(true) // 连续压缩两次相同的文件，结果覆盖
@@ -154,3 +230,31 @@ main() {
 }
 ```
 
+执行示例: 参照1.1.2的执行过程
+
+#### 1.4 对libbzip2的引用
+
+##### 1.4.1 主要接口
+
+```
+/**
+ * 调用bz2压缩
+ * @param name filepath
+ * @return 0成功 其他异常
+ */
+public func cjCompress(name: String): Int32
+
+/**
+ * 调用bz2解压
+ * @param name filepath
+ * @return 0成功 其他异常
+ */
+public func cjUncompress(name: String): Int32
+
+/**
+ * 调用bz2设置参数
+ * @param args 参数
+ * @return 0成功 其他异常
+ */
+public func cjGlobalParamSet(args: GlobalParam): Int32
+```

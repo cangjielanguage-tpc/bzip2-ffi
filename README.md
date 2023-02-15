@@ -10,7 +10,6 @@
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
 
-
 ## <img alt="" src="./doc/assets/readme-icon-introduction.png" style="display: inline-block;" width=3%/>介绍
 
 bzip2是一款文件压缩和解压缩工具。[参考链接](https://gitee.com/openharmony/third_party_bzip2)
@@ -19,12 +18,11 @@ bzip2是一款文件压缩和解压缩工具。[参考链接](https://gitee.com/
 
 - 🚀 文件压缩和解压缩
 
-
 ### 未来规划
 
 - 丰富接口
 
-##    <img alt="" src="./doc/assets/readme-icon-framework.png" style="display: inline-block;" width=3%/> 架构
+## <img alt="" src="./doc/assets/readme-icon-framework.png" style="display: inline-block;" width=3%/> 架构
 
 ### 源码目录
 
@@ -48,15 +46,14 @@ bzip2是一款文件压缩和解压缩工具。[参考链接](https://gitee.com/
 
 - `doc`是库的设计文档、提案、库的使用文档
 - `src`是库源码目录
-- `test`是存放测试用例，包括HLT用例、LLT 用例和UT用例
-- `lib`是存放`bizp2`源码动态库
+- `test`是测试用例，包括HLT用例、LLT 用例和UT用例
+- `lib`是`bizp2`源码动态库
 
 ### 接口说明
 
 主要是核心类和成员函数说明,详情见 [API](./doc/api.md)
 
 #### class BZUtils
-
 
 文件压缩
 
@@ -65,7 +62,6 @@ func compress(fileName: String): Int32
 ```
 
 - fileName：需要压缩文件的名称
-
 
 文件解压缩
 
@@ -135,27 +131,37 @@ main() {
         return 1
     }
     var rFs: File = File("${path2}/a.txt.bz2", Read, Open)
-    if (rFs.canRead()) {
-        return 0
-    } else {
+    if (!rFs.canRead()) {
         return 1
     }
+    0
 }
 ```
 
-执行后查看是否生成压缩文件：
+执行示例：
 
 ```shell
-cd /bzip2/ci_test/test_temp/run/test_compress_01_cj_1655346048_1717525
-```
+# 将上述代码保存为: test/LLT/test_compress_01.cj
 
-验证解压后是否与压缩文件`a.txt`内容一致
+# 新建一个待压缩文件: 
+echo 'helloworld' > test/LLT/a.txt
 
-```shell
+# 使用ci_test编译
+python3 ci_test/main.py build
+
+# 使用ci_test执行所有用例
+python3 ci_test/main.py test
+
+# test_compress_01.cj已被编译并执行main方法
+# 进入执行用例的临时目录
+cd ci_test/test_temp/run/test_compress_01_cj*
+
+# 解压生成的a.txt.bz2
 bzip2 -d a.txt.bz2
+
+# 验证解压后的内容
+cat a.txt
 ```
-
-
 
 ## <img alt="" src="./doc/assets/readme-icon-contribute.png" style="display: inline-block;" width=3%/>参与贡献
 
