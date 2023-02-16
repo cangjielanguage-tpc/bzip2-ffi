@@ -3,9 +3,9 @@
 </div>
 
 <p align="center">
-<img alt="" src="https://img.shields.io/badge/release-v0.0.2-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/release-v0.0.3-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.35.6-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.36.4-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-100%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -31,7 +31,6 @@ bzip2是一款文件压缩和解压缩工具。[参考链接](https://gitee.com/
 ├── doc
 ├── gitee_gate.cfg
 ├── lib
-│   └── libmybzip2.so
 ├── module.json
 ├── README.md
 ├── src
@@ -44,14 +43,14 @@ bzip2是一款文件压缩和解压缩工具。[参考链接](https://gitee.com/
     └── UT
 ```
 
-- `doc`是库的设计文档、提案、库的使用文档
-- `src`是库源码目录
-- `test`是测试用例，包括HLT用例、LLT 用例和UT用例
-- `lib`是`bizp2`源码动态库
+- `doc`存放库的设计文档、提案、库的使用文档
+- `src`存放库源码目录
+- `test`存放测试用例，包括HLT用例、LLT 用例和UT用例
+- `lib`存放`bizp2`源码动态库
 
 ### 接口说明
 
-主要是核心类和成员函数说明,详情见 [API](./doc/api.md)
+主要是核心类和成员函数说明,详情见 [API](./doc/feature_api.md)
 
 #### class BZUtils
 
