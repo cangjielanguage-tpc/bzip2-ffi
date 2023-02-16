@@ -37,6 +37,7 @@ bzip2是一款文件压缩和解压缩工具。[参考链接](https://gitee.com/
 │   └── bzip4cj
 │       └── bzutils.cj
 │       └── native.cj
+├── third_party
 └── test
     ├── HLT
     ├── LLT
@@ -47,6 +48,7 @@ bzip2是一款文件压缩和解压缩工具。[参考链接](https://gitee.com/
 - `src`存放库源码目录
 - `test`存放测试用例，包括HLT用例、LLT 用例和UT用例
 - `lib`存放`bizp2`源码动态库
+- `third_party`存放c相关引用
 
 ### 接口说明
 
@@ -110,10 +112,6 @@ cpm build
 示例描述
 
 ```cangjie
-// DEPENDENCE: a.txt
-// EXEC: cjc %import-path %L %l %f
-// EXEC: ./main
-
 from bzip2 import bzip4cj.*
 from std import os.posix.*
 from std import fs.*
@@ -125,15 +123,16 @@ main() {
     if (ret != 0) {
         return 1
     }
-    ret = BZUtils.compress("${path2}/a.txt")
+    ret = BZUtils.compress("${path2}/a.txt")   //当前目录下生成a.txt.bz2压缩文件
     if (ret != 0) {
         return 1
     }
-    var rFs: File = File("${path2}/a.txt.bz2", Read, Open)
-    if (!rFs.canRead()) {
+    var rFs: File = File("${path2}/a.txt.bz2", Open(true, true))
+    if (rFs.canRead()) {
+        return 0
+    } else {
         return 1
     }
-    0
 }
 ```
 
