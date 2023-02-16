@@ -32,9 +32,6 @@ func compress(fileName: String): Int32
 ##### 1.1.2 示例
 
 ```cangjie
-// DEPENDENCE: a.txt
-// EXEC: cjc %import-path %L %l %f
-// EXEC: ./main
 from bzip2 import bzip4cj.*
 from std import os.posix.*
 from std import fs.*
@@ -46,15 +43,16 @@ main() {
     if (ret != 0) {
         return 1
     }
-    ret = BZUtils.compress("${path2}/a.txt")
+    ret = BZUtils.compress("${path2}/a.txt")   //当前目录下生成a.txt.bz2压缩文件
     if (ret != 0) {
         return 1
     }
-    var rFs: File = File("${path2}/a.txt.bz2", Read, Open)
-    if (!rFs.canRead()) {
+    var rFs: File = File("${path2}/a.txt.bz2", Open(true, true))
+    if (rFs.canRead()) {
+        return 0
+    } else {
         return 1
     }
-    0
 }
 ```
 
@@ -99,28 +97,28 @@ func decompress(fileName: String): Int32
 ##### 1.2.2 示例
 
 ```cangjie
-// DEPENDENCE: a.txt
-// EXEC: cjc %import-path %L %l %f
-// EXEC: ./main
 from bzip2 import bzip4cj.*
 from std import os.posix.*
 from std import fs.*
 
 main() {
-    var path: String = getcwd()
-    var fileName: String = "${path}/test_BZUtils_decompress.md.bz2"
-    var params = GlobalParam()
-
-    params.setKeepInputFiles(true) // 预期结果为源文件保留
-    
-    params.setOpMode(2)
-    BZCommon.globalParamSet(params)
-    BZUtils.decompress(fileName)
-
-    if(!File.exists("${path}/test_BZUtils_decompress.md")) {
-        return -1
+    var args = GlobalParam()
+    args.setOpMode(2)
+    var path2: String = getcwd()
+    var ret: Int32 = BZCommon.globalParamSet(args)
+    if (ret != 0) {
+        return 1
     }
-    return 0
+    ret = BZUtils.decompress("${path2}/a.txt.bz2")  //解压缩后当前目录生成a.txt文件
+    if (ret != 0) {
+        return 1
+    }
+    var rFs: File = File("${path2}/a.txt", Open(true, true))
+    if (rFs.canRead()) {
+        return 0
+    } else {
+        return 1
+    }
 }
 ```
 
@@ -206,27 +204,29 @@ public struct GlobalParam {
 ##### 1.2.2 示例
 
 ```
-// DEPENDENCE: a.txt
-// EXEC: cjc %import-path %L %l %f
-// EXEC: ./main
 from bzip2 import bzip4cj.*
 from std import os.posix.*
 from std import fs.*
 
 main() {
- var path: String = getcwd()
-    var fileName: String = "${path}/test.txt"
-    var params = GlobalParam()
-    var params = GlobalParam()
-    params.setOpMode(1) 1: 压缩，2: 解压缩
-    params.setSrcMode(3) //目前只支持 3
-    params.setSmallMode(true) 
-    params.setForceOverwrite(true) // 连续压缩两次相同的文件，结果覆盖
-    params.setKeepInputFiles(true) 
-    params.setVerbosity()
-    params.setBlockSize100k(9) 
-    BZCommon.globalParamSet(params) 
-    BZUtils.compress(fileName)
+    var args = GlobalParam()
+    args.setBlockSize100k(9)
+    args.setVerbosity()
+    var path2: String = getcwd()
+    var ret: Int32 = BZCommon.globalParamSet(args)
+    if (ret != 0) {
+        return 1
+    }
+    ret = BZUtils.compress("${path2}/a.txt")    //压制不重要的警告信息
+    if (ret != 0) {
+        return 1
+    }
+    var rFs: File = File("${path2}/a.txt.bz2", Open(true, true))
+    if (rFs.canRead()) {
+        return 0
+    } else {
+        return 1
+    }
 }
 ```
 
