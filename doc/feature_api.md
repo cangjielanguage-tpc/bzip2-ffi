@@ -23,7 +23,7 @@
 /*
 * 文件压缩
 * @param fileName 压缩的文件路径
-* @return 0成功 其他异常
+* @return 0成功 -1失败
 */
 func compress(fileName: String): Int32
 
@@ -89,7 +89,7 @@ cat a.txt
 /*
 * 文件解压缩
 * @param fileName 解压缩的文件路径
-* @return 0成功 其他异常
+* @return 0成功 -1失败
 */
 func decompress(fileName: String): Int32
 ```
@@ -128,7 +128,7 @@ main() {
 
 ##### 1.3.1 主要接口
 
-```
+```cangjie
 /*
  * 设置参数的工具类
  */
@@ -136,7 +136,7 @@ public open class BZCommon {
     /*
      * 设置参数
      * @param GlobalParam参数
-     * @return 0成功 其他异常
+     * @return 0成功 -1失败
      */
     public static func globalParamSet(args: GlobalParam): Int32
 }
@@ -148,7 +148,7 @@ public struct GlobalParam {
 
     /*
      * 设置压缩模式
-     * @param opMode 1：压缩，2：解压缩
+     * @param opMode 1:压缩 2:解压缩 其他:无效globalParamSet时抛出异常
      */
     public mut func setOpMode(opMode: Int32): Unit
 
@@ -166,7 +166,7 @@ public struct GlobalParam {
 
     /*
      * 在压缩或解压缩过程中降低内存用量
-     * @param smallMode true:小 false
+     * @param smallMode true:启用 false:不启用
      */
     public mut func setSmallMode(smallMode: Bool): Unit
 
@@ -240,21 +240,21 @@ main() {
 /**
  * 调用bz2压缩
  * @param name filepath
- * @return 0成功 其他异常
+ * @return 0成功 -1失败
  */
 public func cjCompress(name: String): Int32
 
 /**
  * 调用bz2解压
  * @param name filepath
- * @return 0成功 其他异常
+ * @return 0成功 -1失败
  */
 public func cjUncompress(name: String): Int32
 
 /**
  * 调用bz2设置参数
  * @param args 参数
- * @return 0成功 其他异常
+ * @return 0成功 -1失败
  */
 public func cjGlobalParamSet(args: GlobalParam): Int32
 ```
