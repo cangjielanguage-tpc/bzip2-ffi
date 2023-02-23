@@ -12,7 +12,7 @@ OBJS= blocksort.o  \
 
 all:$(OBJS)
 	@echo "$(OBJS)"
-	gcc -shared -fPIC -o libmybzip2.so $(OBJS)
+	gcc -shared -fPIC -o liblibbz2.so $(OBJS)
 
 blocksort.o: blocksort.c
 	        @cat words0
