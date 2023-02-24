@@ -95,8 +95,11 @@ func GlobalParamSet(args: GlobalParam): Int32
 编译描述和具体shell命令
 
 ```shell
-cpm update
-cpm build
+cd third_party/third_party_bzip2-OpenHarmony-v3.1-Release
+make clean && make -f Makefile2Cangjie
+cp liblibbz2.so ../../lib
+cd ../../
+cpm clean && cpm build
 ```
 
 ### 测试
