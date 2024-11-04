@@ -33,7 +33,7 @@ func compress(fileName: String): Int32
 
 ```cangjie
 import bz2ffi.*
-import std.os.posix.*
+import std.posix.*
 import std.fs.*
 
 main() {
@@ -98,7 +98,7 @@ func decompress(fileName: String): Int32
 
 ```cangjie
 import bz2ffi.*
-import std.os.posix.*
+import std.posix.*
 import std.fs.*
 
 main() {
@@ -205,7 +205,7 @@ public struct GlobalParam {
 
 ```
 import bz2ffi.*
-import std.os.posix.*
+import std.posix.*
 import std.fs.*
 
 main() {
