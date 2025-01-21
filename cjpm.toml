@@ -4,7 +4,7 @@
   libbz2 = {path = "./lib/"}
 
 [package]
-  cjc-version = "0.56.4"
+  cjc-version = "0.58.3"
   compile-option = ""
   description = "bzip2 is a compression/decompression library"
   link-option = ""
